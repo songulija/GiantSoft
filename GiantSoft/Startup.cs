@@ -1,7 +1,9 @@
+using GiantSoft.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,6 +34,11 @@ namespace GiantSoft
             //for AddCors we need to add policy so it knows how to behave
             //so bellow with adding policys we can determine who is allowed to access our recources
             //if everybody on internet will use API you cant be to strict. In our case we allow everybody
+            //adding databaseContext
+            services.AddDbContext<DatabaseContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("sqlConnection")));
+
+            //adding AddMemoryCache to keep track who requested, what requested and ..
             services.AddCors(o =>
             {
                 o.AddPolicy("AllowAll", builder =>
