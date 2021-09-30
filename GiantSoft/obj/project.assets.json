@@ -198,11 +198,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\source\\repos\\GiantSoft\\GiantSoft\\GiantSoft.csproj",
+      "projectUniqueName": "D:\\AspNetApps\\GiantSoft\\GiantSoft\\GiantSoft.csproj",
       "projectName": "GiantSoft",
-      "projectPath": "C:\\Users\\User\\source\\repos\\GiantSoft\\GiantSoft\\GiantSoft.csproj",
+      "projectPath": "D:\\AspNetApps\\GiantSoft\\GiantSoft\\GiantSoft.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\source\\repos\\GiantSoft\\GiantSoft\\obj\\",
+      "outputPath": "D:\\AspNetApps\\GiantSoft\\GiantSoft\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
