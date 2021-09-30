@@ -5,7 +5,4 @@ using System.Threading.Tasks;
 
 namespace GiantSoft.Data
 {
-    public class DatabaseContext
-    {
-    }
 }
