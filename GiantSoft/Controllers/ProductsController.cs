@@ -38,7 +38,7 @@ namespace GiantSoft.Controllers
             return Ok(results);
         }
 
-        [HttpGet("{id:int}", Name ="GetProduct")]
+        [HttpGet("{id:int}", Name = "GetProduct")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetProduct(int id)
@@ -48,7 +48,7 @@ namespace GiantSoft.Controllers
             return Ok(result);
         }
 
-        public async Task<IActionResult> CreateProduct([FromBody] ProductDTO productDTO)
+        public async Task<IActionResult> CreateProduct([FromBody] CreateProductDTO productDTO)
         {
             if (!ModelState.IsValid)
             {

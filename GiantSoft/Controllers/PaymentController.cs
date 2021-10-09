@@ -65,7 +65,7 @@ namespace GiantSoft.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<IActionResult> CreatePayment([FromBody] PaymentDTO paymentDTO)
+        public async Task<IActionResult> CreatePayment([FromBody] CreatePaymentDTO paymentDTO)
         {
             if (!ModelState.IsValid)
             {

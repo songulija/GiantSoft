@@ -49,7 +49,7 @@ namespace GiantSoft.Controllers
             return Ok(result);
         }
 
-        public async Task<IActionResult> CreateWishlist([FromBody] WhishlistDTO whishlistDTO)
+        public async Task<IActionResult> CreateWishlist([FromBody] CreateWhishlistDTO whishlistDTO)
         {
             if (!ModelState.IsValid)
             {
@@ -68,7 +68,7 @@ namespace GiantSoft.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
 
-        public async Task<IActionResult> UpdateWishlist([FromBody] WhishlistDTO whishlistDTO, int id)
+        public async Task<IActionResult> UpdateWishlist([FromBody] CreateWhishlistDTO whishlistDTO, int id)
         {
             if (!ModelState.IsValid || id < 1)
             {
