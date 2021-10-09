@@ -350,6 +350,46 @@ namespace GiantSoft.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "28cb940b-b7ea-4bba-8583-9444835019cf", "a0edecf9-dd52-49db-8345-2b0111525818", "Administrator", "ADMINISTRATOR" },
+                    { "a797b08f-db93-42b3-8481-ca2622c8f141", "27c52bb4-28d0-46c7-9fbd-bf44ba635841", "User", "USER" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Brands",
+                columns: new[] { "Id", "BrandName" },
+                values: new object[,]
+                {
+                    { 6, "New balance" },
+                    { 5, "Baker" },
+                    { 1, "Adidas" },
+                    { 3, "DC" },
+                    { 2, "SKATEDELUXE" },
+                    { 4, "Element" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "Name", "ParentId" },
+                values: new object[,]
+                {
+                    { 1, "Skateboards", null },
+                    { 2, "Shoes", null },
+                    { 3, "Accessories", null },
+                    { 5, "Regular skateboards", 1 },
+                    { 6, "Man", 2 },
+                    { 7, "Women", 2 },
+                    { 8, "Skate shoes", 6 },
+                    { 9, "Sneakers", 6 },
+                    { 10, "Skate shoes", 7 },
+                    { 11, "Sneakers", 7 },
+                    { 4, "Longboards", 1 }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",

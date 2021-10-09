@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GiantSoft.Data;
 using GiantSoft.ModelsDTO;
+using GiantSoft.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -22,13 +23,17 @@ namespace GiantSoft.Controllers
         private readonly UserManager<ApiUser> _userManager;
         private readonly IMapper _mapper;
         private readonly ILogger<AccountsController> _logger;
+        private readonly IAuthManager _authManager;
 
-        public AccountsController(UserManager<ApiUser> userManager, IMapper mapper, ILogger<AccountsController> logger)
+        public AccountsController(UserManager<ApiUser> userManager, IMapper mapper, ILogger<AccountsController> logger, IAuthManager authManager)
         {
             _userManager = userManager;
             _mapper = mapper;
             _logger = logger;
+            _authManager = authManager;
         }
+
+
 
         /// <summary>
         /// In Register we'll requiring sensitive data like passwords we dont want to send them as parameters
@@ -72,6 +77,40 @@ namespace GiantSoft.Controllers
 
             //return anything in 200 range. means it was succesful
             return Accepted();
+        }
+
+
+        /// <summary>
+        /// POST request to api/accounts/login route. Provide LoginUserDTO object in body
+        /// Checking if ModelState is valid, checking by object requirements, then validating User.
+        /// If user is valid then create token and return it
+        /// </summary>
+        /// <param name="userDTO"></param>
+        /// <returns></returns>
+        [HttpPost("login")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<IActionResult> Login([FromBody] LoginUserDTO userDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            //ValidateUser returns true or false
+            var validUser = await _authManager.ValidateUser(userDTO);
+            if (validUser == false)
+            {
+                return Unauthorized();
+            }
+
+            //return anything in 200 range. means it was succesful
+            //return new object with an expression called Token. it'll equal to 
+            //authManager method CreateToken which will return Token
+            return Accepted(new { Token = await _authManager.CreateToken() });
+
         }
 
 

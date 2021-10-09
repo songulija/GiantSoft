@@ -452,15 +452,15 @@ namespace GiantSoft.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7f0d9193-8bc4-4355-9c85-29454744153e",
-                            ConcurrencyStamp = "0a5c21f5-9d77-42e5-976f-a46f56b5f504",
+                            Id = "a797b08f-db93-42b3-8481-ca2622c8f141",
+                            ConcurrencyStamp = "27c52bb4-28d0-46c7-9fbd-bf44ba635841",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "91a9b03d-b2d9-4829-bdae-ca062756f58f",
-                            ConcurrencyStamp = "6cdf7221-8f45-441a-b5b6-787f7e90d376",
+                            Id = "28cb940b-b7ea-4bba-8583-9444835019cf",
+                            ConcurrencyStamp = "a0edecf9-dd52-49db-8345-2b0111525818",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

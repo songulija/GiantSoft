@@ -2,6 +2,7 @@ using GiantSoft.Configurations;
 using GiantSoft.Data;
 using GiantSoft.IRepository;
 using GiantSoft.Repository;
+using GiantSoft.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,7 +32,6 @@ namespace GiantSoft
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
             //cors, when someone thats not in your network tries accesing api,
             //by default your api will reject that request. so we want to configure this policy
             //for AddCors we need to add policy so it knows how to behave
@@ -45,6 +45,8 @@ namespace GiantSoft
             services.AddAuthentication();
             //calling method from ServiceExtensions to configure Identity
             services.ConfigureIdentity();
+            //configuration for JWT 
+            services.ConfigureJWT(Configuration);
 
             //adding AddMemoryCache to keep track who requested, what requested and ..
             services.AddCors(o =>
@@ -57,6 +59,8 @@ namespace GiantSoft
 
             //adding MapperInitilizer as mapper to automapper
             services.AddAutoMapper(typeof(MapperInitilizer));
+            //adding new serivice. IAuthManager mapped to AuthManager. AuthManager has methods implementation.
+            services.AddScoped<IAuthManager, AuthManager>();
 
             //addTranscient means when someone hits my controller it'll always provide fresh copy of IUnitOfWork
             //adds transcient service of type specified in IUnitOfWork with implementation type specified in UnitOfWork
@@ -66,6 +70,7 @@ namespace GiantSoft
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GiantSoft", Version = "v1" });
             });
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
