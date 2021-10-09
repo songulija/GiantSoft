@@ -38,7 +38,7 @@ namespace GiantSoft.Controllers
             var results = _mapper.Map<IList<WhishlistDTO>>(wishlists);
             return Ok(results);
         }
-        [Authorize]
+
         [HttpGet("{id:int}", Name ="GetWishList")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -57,7 +57,7 @@ namespace GiantSoft.Controllers
                 return BadRequest(ModelState);
             }
             var wishlist = _mapper.Map<Whishlist>(whishlistDTO);
-            await _unitOfWork.Products.Insert(wishlist);
+            await _unitOfWork.Whishlists.Insert(wishlist);
             await _unitOfWork.Save();
 
             return CreatedAtRoute("GetWishList", new { id = wishlist.Id }, wishlist);
@@ -83,6 +83,7 @@ namespace GiantSoft.Controllers
                 return BadRequest("Submited data is invalid");
             }
             _mapper.Map(whishlistDTO, wishlist);
+            _unitOfWork.Whishlists.Update(wishlist);
             await _unitOfWork.Save();
 
             return NoContent();

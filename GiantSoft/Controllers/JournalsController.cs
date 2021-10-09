@@ -35,7 +35,7 @@ namespace GiantSoft.Controllers
             var results = _mapper.Map<IList<JournalDTO>>(journals);
             return Ok(results);
         }
-        [Authorize]
+
         [HttpGet("{id:int}", Name = "GetJournal")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -84,6 +84,7 @@ namespace GiantSoft.Controllers
                 return BadRequest("Submited data is invalid");
             }
             _mapper.Map(journalDTO, journal);
+            _unitOfWork.Journals.Update(journal);
             await _unitOfWork.Save();
 
             return NoContent();

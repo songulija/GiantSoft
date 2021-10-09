@@ -50,7 +50,7 @@ namespace GiantSoft.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize]
+
         [HttpGet("{id:int}", Name ="GetPayment")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -99,6 +99,7 @@ namespace GiantSoft.Controllers
                 return BadRequest("Submited data is invalid");
             }
             _mapper.Map(paymentDTO, payment);
+            _unitOfWork.Payments.Update(payment);
             await _unitOfWork.Save();
 
             return NoContent();
