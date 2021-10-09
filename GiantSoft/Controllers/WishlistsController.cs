@@ -13,97 +13,104 @@ using System.Threading.Tasks;
 
 namespace GiantSoft.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class WishlistsController : ControllerBase
     {
+        // IUnitOfWork registers for every variation of GenericRepository
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly ILogger<WishlistsController> _logger;
+        private readonly ILogger<BrandsController> _logger;
 
-        public WishlistsController(IUnitOfWork unitOfWork, IMapper mapper, ILogger<WishlistsController> logger)
+        public WishlistsController(IUnitOfWork unitOfWork, IMapper mapper, ILogger<BrandsController> logger)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _logger = logger;
         }
 
-
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetWishlists()
+        public async Task<IActionResult> GetWhishlists()
         {
-            var wishlists = await _unitOfWork.Whishlists.GetAll();
-            var results = _mapper.Map<IList<WhishlistDTO>>(wishlists);
+            var whishlists = await _unitOfWork.Whishlists.GetAll();
+            var results = _mapper.Map<IList<WhishlistDTO>>(whishlists);
             return Ok(results);
         }
 
-        [HttpGet("{id:int}", Name ="GetWishList")]
+        [HttpGet("{id:int}", Name = "GetWhishlist")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetWishlist(int id)
+        public async Task<IActionResult> GetWhishlist(int id)
         {
-            var wishlist = await _unitOfWork.Whishlists.Get(w => w.Id == id);
-            var result = _mapper.Map<WhishlistDTO>(wishlist);
+            var whishlist = await _unitOfWork.Whishlists.Get(w => w.Id == id);
+            var result = _mapper.Map<WhishlistDTO>(whishlist);
             return Ok(result);
         }
 
-        public async Task<IActionResult> CreateWishlist([FromBody] CreateWhishlistDTO whishlistDTO)
+        [HttpPost]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<IActionResult> CreateWhishlist([FromBody] CreateWhishlistDTO whishlistDTO)
         {
             if (!ModelState.IsValid)
             {
-                _logger.LogError($"Invalid Create attempt in {nameof(CreateWishlist)}");
-                return BadRequest(ModelState);
+                _logger.LogError($"Invalid CREATE attemt in {nameof(CreateWhishlist)}");
+                return BadRequest();
             }
-            var wishlist = _mapper.Map<Whishlist>(whishlistDTO);
-            await _unitOfWork.Whishlists.Insert(wishlist);
+            var whishlist = _mapper.Map<Whishlist>(whishlistDTO);
+            await _unitOfWork.Whishlists.Insert(whishlist);
             await _unitOfWork.Save();
-
-            return CreatedAtRoute("GetWishList", new { id = wishlist.Id }, wishlist);
+            return CreatedAtRoute("GetWhishlist", new { id = whishlist.Id }, whishlist);
         }
 
         [HttpPut("{id:int}")]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-
-        public async Task<IActionResult> UpdateWishlist([FromBody] CreateWhishlistDTO whishlistDTO, int id)
+        public async Task<IActionResult> UpdateWhishlist([FromBody] CreateWhishlistDTO whishlistDTO, int id)
         {
             if (!ModelState.IsValid || id < 1)
             {
-                _logger.LogError($"Invalid Update attempt in {nameof(UpdateWishlist)}");
-                return BadRequest(ModelState);
+                _logger.LogError($"Invalid UPDATE attemt in {nameof(UpdateWhishlist)}");
+                return BadRequest();
             }
 
-            var wishlist = await _unitOfWork.Whishlists.Get(j => j.Id == id);
-            if (wishlist == null)
+
+            var whishlist = await _unitOfWork.Whishlists.Get(g => g.Id == id);
+            if (whishlist == null)
             {
-                _logger.LogError($"Invalid Update attempt in {nameof(UpdateWishlist)}");
-                return BadRequest("Submited data is invalid");
+                _logger.LogError($"Invalid UPDATE attemt in {nameof(UpdateWhishlist)}");
+                return BadRequest("Submited invalid data");
             }
-            _mapper.Map(whishlistDTO, wishlist);
-            _unitOfWork.Whishlists.Update(wishlist);
+            //map whishlistDTO to whishlist domain object. puts all fields values from dto to whishlist object
+            _mapper.Map(whishlistDTO, whishlist);
+            _unitOfWork.Whishlists.Update(whishlist);
             await _unitOfWork.Save();
-
             return NoContent();
         }
-
         [HttpDelete("{id:int}")]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> DeleteWishlist(int id)
+        public async Task<IActionResult> DeleteWhishlist(int id)
         {
-            var wishlist = await _unitOfWork.Whishlists.Get(j => j.Id == id);
-            if (wishlist == null)
+            var whishlist = await _unitOfWork.Whishlists.Get(g => g.Id == id);
+            if (whishlist == null)
             {
-                _logger.LogError($"Invalid Delete attempt in {nameof(DeleteWishlist)}");
-                return BadRequest("Submited data is invalid");
+                _logger.LogError($"Invalid DELETE attemt in {nameof(UpdateWhishlist)}");
+                return BadRequest();
             }
+            //map whishlistDTO to whishlist domain object. puts all fields values from dto to whishlist object
             await _unitOfWork.Whishlists.Delete(id);
             await _unitOfWork.Save();
-
             return NoContent();
         }
     }
