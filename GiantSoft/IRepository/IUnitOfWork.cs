@@ -17,6 +17,7 @@ namespace GiantSoft.IRepository
         //SO we could just Call IUnitOfWork.Brands, Categories ... operationName that we want to call
         IGenericRepository<Brand> Brands { get; }
         IGenericRepository<Category> Categories { get; }
+        IGenericRepository<Comment> Comments { get; }
         IGenericRepository<Feedback> Feedbacks { get; }
         IGenericRepository<Product> Products { get; }
         IGenericRepository<Image> Images { get; }

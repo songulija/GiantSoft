@@ -13,6 +13,7 @@ namespace GiantSoft.Repository
         private readonly DatabaseContext _context;
         private IGenericRepository<Brand> _brands;
         private IGenericRepository<Category> _categories;
+        private IGenericRepository<Comment> _comments;
         private IGenericRepository<Feedback> _feedbacks;
         private IGenericRepository<Product> _products;
         private IGenericRepository<Image> _images;
@@ -42,6 +43,8 @@ namespace GiantSoft.Repository
 
         public IGenericRepository<Whishlist> Whishlists => _whishlists ??= new GenericRepository<Whishlist>(_context);
         public IGenericRepository<Payment> Payments => _payments ??= new GenericRepository<Payment>(_context);
+
+        public IGenericRepository<Comment> Comments => throw new NotImplementedException();
 
         public void Dispose()
         {
