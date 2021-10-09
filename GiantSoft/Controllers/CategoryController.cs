@@ -63,7 +63,7 @@ namespace GiantSoft.Controllers
 
         /// <summary>
         /// POST request to api/categories route. Provide CreateCategoryDTO object
-        /// check if model is valid. Map/convert DTO object to Category dto object & insert it
+        /// check if model is valid. Map/convert DTO object to Category  object & insert it
         /// </summary>
         /// <param name="categoryDTO"></param>
         /// <returns></returns>
