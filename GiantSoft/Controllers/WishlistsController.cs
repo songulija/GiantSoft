@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using GiantSoft.Data;
 using GiantSoft.IRepository;
 using GiantSoft.ModelsDTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -36,7 +38,8 @@ namespace GiantSoft.Controllers
             var results = _mapper.Map<IList<WhishlistDTO>>(wishlists);
             return Ok(results);
         }
-        [HttpGet("{id}")]
+        [Authorize]
+        [HttpGet("{id:int}", Name ="GetWishList")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetWishlist(int id)
@@ -44,6 +47,63 @@ namespace GiantSoft.Controllers
             var wishlist = await _unitOfWork.Whishlists.Get(w => w.Id == id);
             var result = _mapper.Map<WhishlistDTO>(wishlist);
             return Ok(result);
+        }
+
+        public async Task<IActionResult> CreateWishlist([FromBody] WhishlistDTO whishlistDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError($"Invalid Create attempt in {nameof(CreateWishlist)}");
+                return BadRequest(ModelState);
+            }
+            var wishlist = _mapper.Map<Whishlist>(whishlistDTO);
+            await _unitOfWork.Products.Insert(wishlist);
+            await _unitOfWork.Save();
+
+            return CreatedAtRoute("GetWishList", new { id = wishlist.Id }, wishlist);
+        }
+
+        [HttpPut("{id:int")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+
+        public async Task<IActionResult> UpdateWishlist([FromBody] WhishlistDTO whishlistDTO, int id)
+        {
+            if (!ModelState.IsValid || id < 1)
+            {
+                _logger.LogError($"Invalid Update attempt in {nameof(UpdateWishlist)}");
+                return BadRequest(ModelState);
+            }
+
+            var wishlist = await _unitOfWork.Whishlists.Get(j => j.Id == id);
+            if (wishlist == null)
+            {
+                _logger.LogError($"Invalid Update attempt in {nameof(UpdateWishlist)}");
+                return BadRequest("Submited data is invalid");
+            }
+            _mapper.Map(whishlistDTO, wishlist);
+            await _unitOfWork.Save();
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id:int")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> DeleteWishlist(int id)
+        {
+            var wishlist = await _unitOfWork.Whishlists.Get(j => j.Id == id);
+            if (wishlist == null)
+            {
+                _logger.LogError($"Invalid Delete attempt in {nameof(DeleteWishlist)}");
+                return BadRequest("Submited data is invalid");
+            }
+            await _unitOfWork.Whishlists.Delete(id);
+            await _unitOfWork.Save();
+
+            return NoContent();
         }
     }
 }

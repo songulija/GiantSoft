@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using GiantSoft.Data;
 using GiantSoft.IRepository;
 using GiantSoft.ModelsDTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -48,7 +50,8 @@ namespace GiantSoft.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id}")]
+        [Authorize]
+        [HttpGet("{id:int}", Name ="GetPayment")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetPayment(int id)
@@ -56,6 +59,67 @@ namespace GiantSoft.Controllers
             var payments = await _unitOfWork.Payments.Get(b => b.Id == id);
             var results = _mapper.Map<PaymentDTO>(payments);
             return Ok(results);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<IActionResult> CreatePayment([FromBody] PaymentDTO paymentDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError($"Invalid Create attempt in {nameof(CreatePayment)}");
+                return BadRequest(ModelState);
+            }
+            var payment = _mapper.Map<Payment>(paymentDTO);
+            await _unitOfWork.Payments.Insert(payment);
+            await _unitOfWork.Save();
+
+            return CreatedAtRoute("GetPayment", new { id = payment.Id }, payment);
+        }
+
+        [HttpPut("{id:int")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+
+        public async Task<IActionResult> UpdatePayment([FromBody] CreatePaymentDTO paymentDTO, int id)
+        {
+            if (!ModelState.IsValid || id < 1)
+            {
+                _logger.LogError($"Invalid Update attempt in {nameof(UpdatePayment)}");
+                return BadRequest(ModelState);
+            }
+
+            var payment = await _unitOfWork.Payments.Get(j => j.Id == id);
+            if (payment == null)
+            {
+                _logger.LogError($"Invalid Update attempt in {nameof(UpdatePayment)}");
+                return BadRequest("Submited data is invalid");
+            }
+            _mapper.Map(paymentDTO, payment);
+            await _unitOfWork.Save();
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id:int")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> DeletePayment(int id)
+        {
+            var payment = await _unitOfWork.Payments.Get(j => j.Id == id);
+            if (payment == null)
+            {
+                _logger.LogError($"Invalid Delete attempt in {nameof(DeletePayment)}");
+                return BadRequest("Submited data is invalid");
+            }
+            await _unitOfWork.Payments.Delete(id);
+            await _unitOfWork.Save();
+
+            return NoContent();
         }
 
     }
