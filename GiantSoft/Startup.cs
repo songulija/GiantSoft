@@ -2,6 +2,7 @@ using GiantSoft.Configurations;
 using GiantSoft.Data;
 using GiantSoft.IRepository;
 using GiantSoft.Repository;
+using GiantSoft.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -57,6 +58,8 @@ namespace GiantSoft
 
             //adding MapperInitilizer as mapper to automapper
             services.AddAutoMapper(typeof(MapperInitilizer));
+            //adding new serivice. IAuthManager mapped to AuthManager. AuthManager has methods implementation.
+            services.AddScoped<IAuthManager, AuthManager>();
 
             //addTranscient means when someone hits my controller it'll always provide fresh copy of IUnitOfWork
             //adds transcient service of type specified in IUnitOfWork with implementation type specified in UnitOfWork
