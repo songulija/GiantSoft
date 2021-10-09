@@ -75,3 +75,5 @@ D:\AspNetApps\GiantSoft\GiantSoft\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptogr
 D:\AspNetApps\GiantSoft\GiantSoft\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 D:\AspNetApps\GiantSoft\GiantSoft\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
 D:\AspNetApps\GiantSoft\GiantSoft\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
+D:\AspNetApps\GiantSoft\GiantSoft\bin\Debug\net5.0\AutoMapper.dll
+D:\AspNetApps\GiantSoft\GiantSoft\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
