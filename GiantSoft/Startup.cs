@@ -41,6 +41,11 @@ namespace GiantSoft
             services.AddDbContext<DatabaseContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("sqlConnection")));
 
+
+            services.AddAuthentication();
+            //calling method from ServiceExtensions to configure Identity
+            services.ConfigureIdentity();
+
             //adding AddMemoryCache to keep track who requested, what requested and ..
             services.AddCors(o =>
             {
@@ -82,6 +87,7 @@ namespace GiantSoft
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
