@@ -12,16 +12,16 @@ using System.Threading.Tasks;
 
 namespace GiantSoft.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
-    public class FeedbackController : ControllerBase
+    [ApiController]
+    public class FeedbacksController : ControllerBase
     {
         // IUnitOfWork registers for every variation of GenericRepository
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly ILogger<FeedbackController> _logger;
+        private readonly ILogger<BrandsController> _logger;
 
-        public FeedbackController(IUnitOfWork unitOfWork, IMapper mapper, ILogger<FeedbackController> logger)
+        public FeedbacksController(IUnitOfWork unitOfWork, IMapper mapper, ILogger<BrandsController> logger)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -29,45 +29,74 @@ namespace GiantSoft.Controllers
         }
 
         /// <summary>
-        // <summary>
-        /// GET request to api/feedback route. Getting all records from feedback table
-        /// converting/mapping feedback domain objects to IList of FeedbackDTO objects with Mapper help. I dont need try
+        /// GET request to api/feedbacks route. MAP/convert Feedback
+        /// objects from DB to IList of FeedbackDTO.
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-
-        public async Task<IActionResult> GetFeedback()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetFeedbacks()
         {
             var feedbacks = await _unitOfWork.Feedbacks.GetAll();
             var results = _mapper.Map<IList<FeedbackDTO>>(feedbacks);
             return Ok(results);
         }
-
         /// <summary>
-        /// HTTP GET request to api/feedback/{id} route. Getting record from feedback table by id
-        /// converting/mapping feedback dto to feedback domain object and inserting it
+        /// GET reques to api/feedbacks/{id} route. Provide id(int).
+        /// Get method requers Expression how to get needed record
+        /// Map/convert Feedback domain object to FeedbackDTO object
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-
         [HttpGet("{id:int}", Name = "GetFeedback")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetFeedback(int id)
         {
-            var feedback = await _unitOfWork.Feedbacks.Get(b => b.Id == id);
+            var feedback = await _unitOfWork.Feedbacks.Get(f => f.Id == id);
             var result = _mapper.Map<FeedbackDTO>(feedback);
             return Ok(result);
         }
         /// <summary>
-        //// POST request to api/feedbacks route. Provide dto, map/convert it to domain object
+        /// GET request to api/feedbacks/receiver/receiverId. provide receiver id. map to IList of FeedbackDTO objects
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("receiver/{id:int}")]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetFeedbacksByReceiverId(int id)
+        {
+            var feedbacks = await _unitOfWork.Feedbacks.GetAll(f => f.ReceiverId == id);
+            var results = _mapper.Map<IList<FeedbackDTO>>(feedbacks);
+            return Ok(results);
+        }
+        /// <summary>
+        /// GET request to api/feedbacks/sender/id. provide receiver senderId. map to IList of FeedbackDTO objects
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("sender/{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetFeedbacksBySenderId(int id)
+        {
+            var feedbacks = await _unitOfWork.Feedbacks.GetAll(f => f.SenderId == id);
+            var results = _mapper.Map<IList<FeedbackDTO>>(feedbacks);
+            return Ok(results);
+        }
+
+        /// <summary>
+        /// POST request to api/feedbacks route. Provide dto, map/convert it to domain object
         /// & insert & save
         /// </summary>
         /// <param name="feedbackDTO"></param>
         /// <returns></returns>
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> CreateFeedback([FromBody] CreateFeedbackDTO feedbackDTO)
         {
             if (!ModelState.IsValid)
@@ -81,7 +110,6 @@ namespace GiantSoft.Controllers
 
             return CreatedAtRoute("GetFeedback", new { id = feedback.Id }, feedback);
         }
-
         /// <summary>
         /// PUT request to api/feedbakc/id route. provide id,feedbackDTO. Check if record
         /// exist. Map dto to domain object. Put its values to Feedback object & update it
@@ -113,7 +141,6 @@ namespace GiantSoft.Controllers
             return NoContent();
 
         }
-
         /// <summary>
         /// DELETE request to api/feedbakcs.{id} route. Provide id. Check if record exist, delete
         /// </summary>
@@ -135,8 +162,5 @@ namespace GiantSoft.Controllers
             await _unitOfWork.Save();
             return NoContent();
         }
-
-
-
     }
 }
