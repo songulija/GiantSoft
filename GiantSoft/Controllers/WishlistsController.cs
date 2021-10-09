@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GiantSoft.IRepository;
+using GiantSoft.ModelsDTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -32,7 +33,7 @@ namespace GiantSoft.Controllers
         public async Task<IActionResult> GetWishlists()
         {
             var wishlists = await _unitOfWork.Whishlists.GetAll();
-            var results = _mapper.Map<IList<WishlistDTO>>(wishlists);
+            var results = _mapper.Map<IList<WhishlistDTO>>(wishlists);
             return Ok(results);
         }
         [HttpGet("{id}")]
@@ -41,7 +42,7 @@ namespace GiantSoft.Controllers
         public async Task<IActionResult> GetWishlist(int id)
         {
             var wishlist = await _unitOfWork.Whishlists.Get(w => w.Id == id);
-            var result = _mapper.Map<WishlistDTO>(wishlist);
+            var result = _mapper.Map<WhishlistDTO>(wishlist);
             return Ok(result);
         }
     }
