@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GiantSoft.Data;
 using GiantSoft.IRepository;
 using GiantSoft.ModelsDTO;
 using Microsoft.AspNetCore.Http;
@@ -48,8 +49,7 @@ namespace GiantSoft.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         /// 
-
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}", Name = "GetCategory")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
@@ -59,6 +59,91 @@ namespace GiantSoft.Controllers
             var result = _mapper.Map<CategoryDTO>(categories);
             return Ok(result);
         }
+
+
+        /// <summary>
+        /// POST request to api/categories route. Provide CreateCategoryDTO object
+        /// check if model is valid. Map/convert DTO object to Category dto object & insert it
+        /// </summary>
+        /// <param name="categoryDTO"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryDTO categoryDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError($"Invalid CREATE attempt in {nameof(CreateCategory)}");
+                return BadRequest(ModelState);
+            }
+            var category = _mapper.Map<Category>(categoryDTO);
+            await _unitOfWork.Categories.Insert(category);
+            await _unitOfWork.Save();
+
+            return CreatedAtRoute("GetCategory", new { id = category.Id }, category);
+        }
+
+        /// <summary>
+        /// PUT request to api/categories/{id} route. Provide id & categoryDTO in body
+        /// check if model valid, check if category exist with that id , map/convert dto
+        /// to Category domain object for db. update and save
+        /// </summary>
+        /// <param name="categoryDTO"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPut("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> UpdateCategory([FromBody] CreateCategoryDTO categoryDTO, int id)
+        {
+            if (!ModelState.IsValid || id < 1)
+            {
+                _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateCategory)}");
+                return BadRequest(ModelState);
+            }
+
+            var category = await _unitOfWork.Categories.Get(c => c.Id == id);
+            if (category == null)
+            {
+                _logger.LogError($"Invalid UPDATE attempt in {nameof(UpdateCategory)}");
+                return BadRequest("Submited invalid data");
+            }
+            //map/convert brandDTO into brand object. basically whatever is in brandDTO put it into brand
+            _mapper.Map(categoryDTO, category);
+            _unitOfWork.Categories.Update(category);
+            await _unitOfWork.Save();
+            return NoContent();
+        }
+
+        /// <summary>
+        /// DELETE request to api/categories route. Check if record exist. Delete and save it
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> DeleteCategory(int id)
+        {
+            var category = await _unitOfWork.Categories.Get(c => c.Id == id);
+            if (category == null)
+            {
+                _logger.LogError($"Invalid DELETE attempt in {nameof(DeleteCategory)}");
+                return BadRequest("Submited data is invalid");
+            }
+
+            await _unitOfWork.Categories.Delete(id);
+            await _unitOfWork.Save();
+            return NoContent();
+        }
+
+
+
+
     }
 
 }
