@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using GiantSoft.Configurations.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -36,5 +37,17 @@ namespace GiantSoft.Data
         public DbSet<Whishlist> Whishlists { get; set; }
         public DbSet<Payment> Payments { get; set; }
 
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            //applying configurations that i created. Seed data for Categories, brands
+            builder.ApplyConfiguration(new CategoriesConfiguration());
+            builder.ApplyConfiguration(new BrandsConfiguration());
+            //applying RoleConfiguration. To add two user roles
+            builder.ApplyConfiguration(new RolesConfiguration());
+
+        }
     }
 }
