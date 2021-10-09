@@ -51,6 +51,10 @@ namespace GiantSoft.Configurations
             CreateMap<Whishlist, WhishlistDTO>().ReverseMap();
             CreateMap<Whishlist, CreateWhishlistDTO>().ReverseMap();
             CreateMap<Whishlist, UpdateWhishlistDTO>().ReverseMap();
+
+            CreateMap<Comment, CommentDTO>().ReverseMap();
+            CreateMap<Comment, CreateCommentDTO>().ReverseMap();
+            CreateMap<Comment, UpdateCommentDTO>().ReverseMap();
         }
 
     }

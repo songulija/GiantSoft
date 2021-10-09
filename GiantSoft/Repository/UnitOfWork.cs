@@ -44,7 +44,7 @@ namespace GiantSoft.Repository
         public IGenericRepository<Whishlist> Whishlists => _whishlists ??= new GenericRepository<Whishlist>(_context);
         public IGenericRepository<Payment> Payments => _payments ??= new GenericRepository<Payment>(_context);
 
-        public IGenericRepository<Comment> Comments => throw new NotImplementedException();
+        public IGenericRepository<Comment> Comments => _comments ??= new GenericRepository<Comment>(_context);
 
         public void Dispose()
         {

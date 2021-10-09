@@ -36,6 +36,7 @@ namespace GiantSoft.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Whishlist> Whishlists { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
