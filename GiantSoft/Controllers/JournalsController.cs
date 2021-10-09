@@ -64,7 +64,7 @@ namespace GiantSoft.Controllers
             return CreatedAtRoute("GetJournal", new { id = journal.Id }, journal);
         }
 
-        [HttpPut("{id:int")]
+        [HttpPut("{id:int}")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

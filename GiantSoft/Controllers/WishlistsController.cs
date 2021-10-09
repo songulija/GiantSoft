@@ -63,7 +63,7 @@ namespace GiantSoft.Controllers
             return CreatedAtRoute("GetWishList", new { id = wishlist.Id }, wishlist);
         }
 
-        [HttpPut("{id:int")]
+        [HttpPut("{id:int}")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -88,7 +88,7 @@ namespace GiantSoft.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id:int")]
+        [HttpDelete("{id:int}")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

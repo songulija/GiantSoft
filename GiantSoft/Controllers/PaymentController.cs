@@ -79,7 +79,7 @@ namespace GiantSoft.Controllers
             return CreatedAtRoute("GetPayment", new { id = payment.Id }, payment);
         }
 
-        [HttpPut("{id:int")]
+        [HttpPut("{id:int}")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -104,7 +104,7 @@ namespace GiantSoft.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id:int")]
+        [HttpDelete("{id:int}")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
