@@ -30,7 +30,7 @@ namespace GiantSoft.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetComments()
         {
-            var comments = await _unitOfWork.Brands.GetAll();
+            var comments = await _unitOfWork.Comments.GetAll();
             var results = _mapper.Map<List<CommentDTO>>(comments);
             return Ok(results);
         }
