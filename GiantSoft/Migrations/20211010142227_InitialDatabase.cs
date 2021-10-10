@@ -76,6 +76,23 @@ namespace GiantSoft.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Rating = table.Column<float>(type: "real", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -211,7 +228,7 @@ namespace GiantSoft.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true),
                     BrandId = table.Column<int>(type: "int", nullable: true),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     ProductName = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -225,6 +242,7 @@ namespace GiantSoft.Migrations
                     AddDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ExpireDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     OtherBrand = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImageString = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ApiUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -246,26 +264,6 @@ namespace GiantSoft.Migrations
                         name: "FK_Products_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Images",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    Picture = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Images", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Images_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -355,8 +353,8 @@ namespace GiantSoft.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "28cb940b-b7ea-4bba-8583-9444835019cf", "a0edecf9-dd52-49db-8345-2b0111525818", "Administrator", "ADMINISTRATOR" },
-                    { "a797b08f-db93-42b3-8481-ca2622c8f141", "27c52bb4-28d0-46c7-9fbd-bf44ba635841", "User", "USER" }
+                    { "1cd00a41-4e08-47ca-8d2e-3e727e1f564f", "eac1632d-7b86-4294-9800-3e823f60b0a0", "Administrator", "ADMINISTRATOR" },
+                    { "a2bc34a1-ab84-4122-9326-d18f37d0f511", "4c3f791b-5610-4037-a999-f55e480512f9", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
@@ -388,6 +386,25 @@ namespace GiantSoft.Migrations
                     { 10, "Skate shoes", 7 },
                     { 11, "Sneakers", 7 },
                     { 4, "Longboards", 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "AddDate", "ApiUserId", "BrandId", "CategoryId", "City", "Color", "CountInStock", "Country", "Description", "ExpireDate", "ImageString", "ModelYear", "OtherBrand", "Price", "ProductName", "UserId" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(5827), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(6735), "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000", new DateTime(2021, 10, 10, 17, 22, 25, 893, DateTimeKind.Local).AddTicks(1596), "string", 899.0, "IPhone 11", 0 },
+                    { 2, new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8810), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8816), "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8783), "string", 899.0, "IPhone 11", 0 },
+                    { 3, new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8830), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8836), "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8823), "string", 899.0, "IPhone 11", 0 },
+                    { 4, new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8849), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8854), "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8843), "string", 899.0, "IPhone 11", 0 },
+                    { 5, new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8868), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8873), "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8862), "string", 899.0, "IPhone 11", 0 },
+                    { 6, new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8889), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8894), "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8882), "string", 899.0, "IPhone 11", 0 },
+                    { 7, new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8907), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8913), "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8901), "string", 899.0, "IPhone 11", 0 },
+                    { 8, new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8926), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8932), "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8920), "string", 899.0, "IPhone 11", 0 },
+                    { 9, new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8944), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8950), "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8938), "string", 899.0, "IPhone 11", 0 },
+                    { 10, new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8962), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8966), "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8956), "string", 899.0, "IPhone 11", 0 },
+                    { 11, new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8977), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8982), "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8972), "string", 899.0, "IPhone 11", 0 },
+                    { 12, new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8996), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(9001), "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000", new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8989), "string", 899.0, "IPhone 11", 0 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -433,11 +450,6 @@ namespace GiantSoft.Migrations
                 name: "IX_Feedbacks_ApiUserId",
                 table: "Feedbacks",
                 column: "ApiUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Images_ProductId",
-                table: "Images",
-                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Journals_ApiUserId",
@@ -498,10 +510,10 @@ namespace GiantSoft.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Feedbacks");
+                name: "Comments");
 
             migrationBuilder.DropTable(
-                name: "Images");
+                name: "Feedbacks");
 
             migrationBuilder.DropTable(
                 name: "Journals");

@@ -16,7 +16,6 @@ namespace GiantSoft.Repository
         private IGenericRepository<Comment> _comments;
         private IGenericRepository<Feedback> _feedbacks;
         private IGenericRepository<Product> _products;
-        private IGenericRepository<Image> _images;
         private IGenericRepository<Journal> _journals;
         private IGenericRepository<Whishlist> _whishlists;
         private IGenericRepository<Payment> _payments;
@@ -36,9 +35,6 @@ namespace GiantSoft.Repository
         public IGenericRepository<Feedback> Feedbacks => _feedbacks ??= new GenericRepository<Feedback>(_context);
 
         public IGenericRepository<Product> Products => _products ??= new GenericRepository<Product>(_context);
-
-        public IGenericRepository<Image> Images => _images ??= new GenericRepository<Image>(_context);
-
         public IGenericRepository<Journal> Journals => _journals ??= new GenericRepository<Journal>(_context);
 
         public IGenericRepository<Whishlist> Whishlists => _whishlists ??= new GenericRepository<Whishlist>(_context);

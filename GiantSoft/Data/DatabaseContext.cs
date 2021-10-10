@@ -31,7 +31,6 @@ namespace GiantSoft.Data
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
-        public DbSet<Image> Images { get; set; }
         public DbSet<Journal> Journals { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Whishlist> Whishlists { get; set; }
@@ -47,6 +46,7 @@ namespace GiantSoft.Data
             builder.ApplyConfiguration(new CategoriesConfiguration());
             builder.ApplyConfiguration(new BrandsConfiguration());
             //applying RoleConfiguration. To add two user roles
+            builder.ApplyConfiguration(new ProductsConfiguration());
             builder.ApplyConfiguration(new RolesConfiguration());
 
         }

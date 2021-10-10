@@ -20,7 +20,7 @@ namespace GiantSoft.Data
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [ForeignKey(nameof(ApiUser))]
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         [NotMapped]
         public ApiUser ApiUser { get; set; }
         [ForeignKey(nameof(Brand))]
@@ -43,9 +43,9 @@ namespace GiantSoft.Data
         public DateTime AddDate { get; set; }
         public DateTime ExpireDate { get; set; }
         public String OtherBrand { get; set; }
+        public string ImageString { get; set; }
         //Products have many to one connection with Brands
 
-        public virtual IList<Image> Images { get; set; }
         public virtual IList<Whishlist> Whishlists { get; set; }
         public virtual IList<Journal> Journals { get; set; }
         public virtual IList<Payment> Payments { get; set; }

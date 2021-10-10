@@ -40,9 +40,6 @@ namespace GiantSoft.Configurations
             CreateMap<Journal, CreateJournalDTO>().ReverseMap();
             CreateMap<Journal, UpdateJournalDTO>().ReverseMap();
 
-            CreateMap<Image, ImageDTO>().ReverseMap();
-            CreateMap<Image, CreateImageDTO>().ReverseMap();
-            CreateMap<Image, UpdateImageDTO>().ReverseMap();
 
             CreateMap<Payment, PaymentDTO>().ReverseMap();
             CreateMap<Payment, CreatePaymentDTO>().ReverseMap();

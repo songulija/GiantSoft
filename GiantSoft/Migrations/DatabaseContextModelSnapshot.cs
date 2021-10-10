@@ -279,26 +279,6 @@ namespace GiantSoft.Migrations
                     b.ToTable("Feedbacks");
                 });
 
-            modelBuilder.Entity("GiantSoft.Data.Image", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Picture")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Images");
-                });
-
             modelBuilder.Entity("GiantSoft.Data.Journal", b =>
                 {
                     b.Property<int>("Id")
@@ -396,6 +376,9 @@ namespace GiantSoft.Migrations
                     b.Property<DateTime>("ExpireDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ImageString")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("ModelYear")
                         .HasColumnType("datetime2");
 
@@ -408,7 +391,7 @@ namespace GiantSoft.Migrations
                     b.Property<string>("ProductName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -420,6 +403,236 @@ namespace GiantSoft.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AddDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(5827),
+                            BrandId = 1,
+                            CategoryId = 1,
+                            City = "Vilnius",
+                            Color = "Pink",
+                            CountInStock = 2,
+                            Country = "Lithuania",
+                            Description = "string",
+                            ExpireDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(6735),
+                            ImageString = "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000",
+                            ModelYear = new DateTime(2021, 10, 10, 17, 22, 25, 893, DateTimeKind.Local).AddTicks(1596),
+                            OtherBrand = "string",
+                            Price = 899.0,
+                            ProductName = "IPhone 11",
+                            UserId = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AddDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8810),
+                            BrandId = 1,
+                            CategoryId = 1,
+                            City = "Vilnius",
+                            Color = "Pink",
+                            CountInStock = 2,
+                            Country = "Lithuania",
+                            Description = "string",
+                            ExpireDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8816),
+                            ImageString = "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000",
+                            ModelYear = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8783),
+                            OtherBrand = "string",
+                            Price = 899.0,
+                            ProductName = "IPhone 11",
+                            UserId = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AddDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8830),
+                            BrandId = 1,
+                            CategoryId = 1,
+                            City = "Vilnius",
+                            Color = "Pink",
+                            CountInStock = 2,
+                            Country = "Lithuania",
+                            Description = "string",
+                            ExpireDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8836),
+                            ImageString = "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000",
+                            ModelYear = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8823),
+                            OtherBrand = "string",
+                            Price = 899.0,
+                            ProductName = "IPhone 11",
+                            UserId = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AddDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8849),
+                            BrandId = 1,
+                            CategoryId = 1,
+                            City = "Vilnius",
+                            Color = "Pink",
+                            CountInStock = 2,
+                            Country = "Lithuania",
+                            Description = "string",
+                            ExpireDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8854),
+                            ImageString = "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000",
+                            ModelYear = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8843),
+                            OtherBrand = "string",
+                            Price = 899.0,
+                            ProductName = "IPhone 11",
+                            UserId = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AddDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8868),
+                            BrandId = 1,
+                            CategoryId = 1,
+                            City = "Vilnius",
+                            Color = "Pink",
+                            CountInStock = 2,
+                            Country = "Lithuania",
+                            Description = "string",
+                            ExpireDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8873),
+                            ImageString = "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000",
+                            ModelYear = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8862),
+                            OtherBrand = "string",
+                            Price = 899.0,
+                            ProductName = "IPhone 11",
+                            UserId = 0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AddDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8889),
+                            BrandId = 1,
+                            CategoryId = 1,
+                            City = "Vilnius",
+                            Color = "Pink",
+                            CountInStock = 2,
+                            Country = "Lithuania",
+                            Description = "string",
+                            ExpireDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8894),
+                            ImageString = "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000",
+                            ModelYear = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8882),
+                            OtherBrand = "string",
+                            Price = 899.0,
+                            ProductName = "IPhone 11",
+                            UserId = 0
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AddDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8907),
+                            BrandId = 1,
+                            CategoryId = 1,
+                            City = "Vilnius",
+                            Color = "Pink",
+                            CountInStock = 2,
+                            Country = "Lithuania",
+                            Description = "string",
+                            ExpireDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8913),
+                            ImageString = "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000",
+                            ModelYear = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8901),
+                            OtherBrand = "string",
+                            Price = 899.0,
+                            ProductName = "IPhone 11",
+                            UserId = 0
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AddDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8926),
+                            BrandId = 1,
+                            CategoryId = 1,
+                            City = "Vilnius",
+                            Color = "Pink",
+                            CountInStock = 2,
+                            Country = "Lithuania",
+                            Description = "string",
+                            ExpireDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8932),
+                            ImageString = "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000",
+                            ModelYear = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8920),
+                            OtherBrand = "string",
+                            Price = 899.0,
+                            ProductName = "IPhone 11",
+                            UserId = 0
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AddDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8944),
+                            BrandId = 1,
+                            CategoryId = 1,
+                            City = "Vilnius",
+                            Color = "Pink",
+                            CountInStock = 2,
+                            Country = "Lithuania",
+                            Description = "string",
+                            ExpireDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8950),
+                            ImageString = "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000",
+                            ModelYear = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8938),
+                            OtherBrand = "string",
+                            Price = 899.0,
+                            ProductName = "IPhone 11",
+                            UserId = 0
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AddDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8962),
+                            BrandId = 1,
+                            CategoryId = 1,
+                            City = "Vilnius",
+                            Color = "Pink",
+                            CountInStock = 2,
+                            Country = "Lithuania",
+                            Description = "string",
+                            ExpireDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8966),
+                            ImageString = "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000",
+                            ModelYear = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8956),
+                            OtherBrand = "string",
+                            Price = 899.0,
+                            ProductName = "IPhone 11",
+                            UserId = 0
+                        },
+                        new
+                        {
+                            Id = 11,
+                            AddDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8977),
+                            BrandId = 1,
+                            CategoryId = 1,
+                            City = "Vilnius",
+                            Color = "Pink",
+                            CountInStock = 2,
+                            Country = "Lithuania",
+                            Description = "string",
+                            ExpireDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8982),
+                            ImageString = "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000",
+                            ModelYear = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8972),
+                            OtherBrand = "string",
+                            Price = 899.0,
+                            ProductName = "IPhone 11",
+                            UserId = 0
+                        },
+                        new
+                        {
+                            Id = 12,
+                            AddDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8996),
+                            BrandId = 1,
+                            CategoryId = 1,
+                            City = "Vilnius",
+                            Color = "Pink",
+                            CountInStock = 2,
+                            Country = "Lithuania",
+                            Description = "string",
+                            ExpireDate = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(9001),
+                            ImageString = "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000",
+                            ModelYear = new DateTime(2021, 10, 10, 17, 22, 25, 899, DateTimeKind.Local).AddTicks(8989),
+                            OtherBrand = "string",
+                            Price = 899.0,
+                            ProductName = "IPhone 11",
+                            UserId = 0
+                        });
                 });
 
             modelBuilder.Entity("GiantSoft.Data.Whishlist", b =>
@@ -479,15 +692,15 @@ namespace GiantSoft.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b9978776-d7f9-46f1-8d3f-7f823330372c",
-                            ConcurrencyStamp = "7b5d819a-ab6e-4899-b8fc-77f50633bb19",
+                            Id = "a2bc34a1-ab84-4122-9326-d18f37d0f511",
+                            ConcurrencyStamp = "4c3f791b-5610-4037-a999-f55e480512f9",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "1a81c73e-909b-428c-af95-72febb7eb405",
-                            ConcurrencyStamp = "5241efd3-863b-4c57-9324-2b7d9efdcee1",
+                            Id = "1cd00a41-4e08-47ca-8d2e-3e727e1f564f",
+                            ConcurrencyStamp = "eac1632d-7b86-4294-9800-3e823f60b0a0",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -602,15 +815,6 @@ namespace GiantSoft.Migrations
                     b.HasOne("GiantSoft.Data.ApiUser", null)
                         .WithMany("Feedbacks")
                         .HasForeignKey("ApiUserId");
-                });
-
-            modelBuilder.Entity("GiantSoft.Data.Image", b =>
-                {
-                    b.HasOne("GiantSoft.Data.Product", null)
-                        .WithMany("Images")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("GiantSoft.Data.Journal", b =>
@@ -739,8 +943,6 @@ namespace GiantSoft.Migrations
 
             modelBuilder.Entity("GiantSoft.Data.Product", b =>
                 {
-                    b.Navigation("Images");
-
                     b.Navigation("Journals");
 
                     b.Navigation("Payments");

@@ -10,7 +10,7 @@ namespace GiantSoft.ModelsDTO
     {
         public int? BrandId { get; set; }
         [Required]
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         [Required]
         public int CategoryId { get; set; }
         [Required]
@@ -36,7 +36,7 @@ namespace GiantSoft.ModelsDTO
         [Required]
         public DateTime ExpireDate { get; set; }
         public string OtherBrand { get; set; }
-        public virtual IList<ImageDTO> Images { get; set; }
+        public string ImageString { get; set; }
     }
     /// <summary>
     /// UpdateProductDTO inherits from CreateProductDTO. All its fields

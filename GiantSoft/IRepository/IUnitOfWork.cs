@@ -20,7 +20,6 @@ namespace GiantSoft.IRepository
         IGenericRepository<Comment> Comments { get; }
         IGenericRepository<Feedback> Feedbacks { get; }
         IGenericRepository<Product> Products { get; }
-        IGenericRepository<Image> Images { get; }
         IGenericRepository<Journal> Journals { get; }
         IGenericRepository<Whishlist> Whishlists { get; }
         IGenericRepository<Payment> Payments { get; }

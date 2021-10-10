@@ -14,12 +14,12 @@ namespace GiantSoft.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CategoryController : ControllerBase
+    public class CategoriesController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly ILogger<CategoryController> _logger;
-        public CategoryController(IUnitOfWork unitOfWork, IMapper mapper, ILogger<CategoryController> logger)
+        private readonly ILogger<CategoriesController> _logger;
+        public CategoriesController(IUnitOfWork unitOfWork, IMapper mapper, ILogger<CategoriesController> logger)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
