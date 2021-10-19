@@ -27,5 +27,9 @@ namespace GiantSoft.ModelsDTO
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
         public ICollection<string> Roles { get; set; }
+        public virtual IList<ProductDTO> Products { get; set; }
+        public virtual IList<FeedbackDTO> Feedbacks { get; set; }
+        public virtual IList<WhishlistDTO> Whishlists { get; set; }
+        public virtual IList<JournalDTO> Journals { get; set; }
     }
 }

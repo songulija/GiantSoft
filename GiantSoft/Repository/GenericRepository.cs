@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace GiantSoft.Repository
@@ -104,6 +103,7 @@ namespace GiantSoft.Repository
             //expression means that it allows us to put LAMBDA expression like h => h.Id = id, its basically condition(bool)
             return await query.AsNoTracking().ToListAsync();
         }
+
         /// <summary>
         /// For Insert method have to provide entity(object) that you want to insert
         /// </summary>

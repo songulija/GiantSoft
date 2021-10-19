@@ -5,6 +5,7 @@ using GiantSoft.ModelsDTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -39,12 +40,24 @@ namespace GiantSoft.Controllers
             return Ok(results);
         }
 
+        [HttpGet("user/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetWhishlistsByUserId(Guid id)
+        {
+            //get all  whishlist where userId is equal to provided id
+            var whishlists = await _unitOfWork.Whishlists.GetAll(p => p.UserId == id);
+            var results = _mapper.Map<IList<WhishlistDTO>>(whishlists);
+            return Ok(results);
+        }
+
         [HttpGet("{id:int}", Name = "GetWhishlist")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetWhishlist(int id)
         {
-            var whishlist = await _unitOfWork.Whishlists.Get(w => w.Id == id);
+
+            var whishlist = await _unitOfWork.Whishlists.Get(p => p.Id == id);
             var result = _mapper.Map<WhishlistDTO>(whishlist);
             return Ok(result);
         }

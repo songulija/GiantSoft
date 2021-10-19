@@ -4,6 +4,7 @@ using GiantSoft.IRepository;
 using GiantSoft.ModelsDTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -55,7 +56,7 @@ namespace GiantSoft.Controllers
 
         public async Task<IActionResult> GetCategory(int id)
         {
-            var categories = await _unitOfWork.Categories.Get(b => b.Id == id);
+            var categories = await _unitOfWork.Categories.Get(b => b.Id == id, include: p => p.Include(x => x.Products));
             var result = _mapper.Map<CategoryDTO>(categories);
             return Ok(result);
         }

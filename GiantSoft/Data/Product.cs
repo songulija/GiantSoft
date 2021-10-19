@@ -49,5 +49,6 @@ namespace GiantSoft.Data
         public virtual IList<Whishlist> Whishlists { get; set; }
         public virtual IList<Journal> Journals { get; set; }
         public virtual IList<Payment> Payments { get; set; }
+        public virtual IList<Comment> Comments { get; set; }
     }
 }

@@ -76,23 +76,6 @@ namespace GiantSoft.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Rating = table.Column<float>(type: "real", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comments", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -269,6 +252,36 @@ namespace GiantSoft.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Rating = table.Column<float>(type: "real", nullable: false),
+                    ApiUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Comments_AspNetUsers_ApiUserId",
+                        column: x => x.ApiUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Comments_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Journals",
                 columns: table => new
                 {
@@ -353,8 +366,8 @@ namespace GiantSoft.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "e12fd3c5-0bc5-4c73-ab4d-f48fbd8d7aec", "16c83510-cebf-46ee-8db5-1111ba9cc4c2", "Administrator", "ADMINISTRATOR" },
-                    { "87866e61-6f37-452a-a7ea-6da682057d7f", "04c4d1b2-b3e9-4595-9441-65153136abcd", "User", "USER" }
+                    { "23fb6287-9303-4c78-bf43-b5e141a2bbe8", "a3358c25-14c4-4996-8145-370687f2aa0b", "Administrator", "ADMINISTRATOR" },
+                    { "eda8911e-3aa5-447a-aab5-e2d19de49d65", "0fcd76a6-85bc-42e5-b7f7-b8336d86dc4d", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
@@ -393,18 +406,18 @@ namespace GiantSoft.Migrations
                 columns: new[] { "Id", "AddDate", "ApiUserId", "BrandId", "CategoryId", "City", "Color", "CountInStock", "Country", "Description", "ExpireDate", "ImageString", "ModelYear", "OtherBrand", "Price", "ProductName", "UserId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(5397), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(5753), "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000", new DateTime(2021, 10, 19, 18, 10, 54, 624, DateTimeKind.Local).AddTicks(2210), "string", 899.0, "IPhone 11", 0 },
-                    { 2, new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6565), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6568), "https://brain-images-ssl.cdn.dixons.com/4/8/10230584/u_10230584.jpg", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6552), "string", 1199.0, "IPhone 11", 0 },
-                    { 3, new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6575), null, 1, 1, "Vilnius", "Pink", 4, "Lithuania", "string", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6578), "https://brain-images-ssl.cdn.dixons.com/6/0/10230606/u_10230606.jpg", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6572), "string", 1099.0, "IPhone 10 Pro", 0 },
-                    { 4, new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6584), null, 1, 1, "Vilnius", "Pink", 3, "Lithuania", "string", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6586), "https://brain-images-ssl.cdn.dixons.com/0/0/10230600/u_10230600.jpg", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6581), "string", 999.0, "IPhone 11", 0 },
-                    { 5, new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6592), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6595), "https://brain-images-ssl.cdn.dixons.com/7/9/10230597/u_10230597.jpg", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6590), "string", 1159.0, "IPhone 11 Pro", 0 },
-                    { 6, new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6601), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6603), "https://media.ao.com/en-GB/Productimages/Images/rvMedium/purple_apple_mobile_01_m_p.jpg", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6598), "string", 930.0, "IPhone 12", 0 },
-                    { 7, new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6609), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6611), "https://cdn.shopify.com/s/files/1/2700/1230/products/iPhone12_Purple_PDP_Image_2__WWEN_1024x1024.jpg?v=1619138796", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6606), "string", 800.0, "IPhone 10 Pro", 0 },
-                    { 8, new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6617), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6620), "https://m.xcite.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/u/buy_apple_iphone_11_phone_-_purple_lowest_price_in_kuwait_4_1.jpg", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6614), "string", 999.0, "IPhone 11", 0 },
-                    { 9, new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6627), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6629), "https://m.media-amazon.com/images/I/81mxun+6pEL._AC_SL1500_.jpg", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6624), "string", 1130.0, "IPhone 10 Pro", 0 },
-                    { 10, new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6637), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6640), "https://www.ideal.lt/media/catalog/product/cache/1/image/1920x/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone12_green_3.png", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6634), "string", 1299.0, "IPhone 12", 0 },
-                    { 11, new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6647), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6650), "https://kainos-img.dgn.lt/photos2_25_57208819/img.jpg", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6644), "string", 900.0, "IPhone 11", 0 },
-                    { 12, new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6655), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6658), "https://istore.lt/media/catalog/product/cache/1/small_image/504x/602f0fa2c1f0d1ba5e241f914e856ff9/a/p/apple-iphone-11-red-2.jpg", new DateTime(2021, 10, 19, 18, 10, 54, 627, DateTimeKind.Local).AddTicks(6653), "string", 915.0, "IPhone 11", 0 }
+                    { 1, new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(4792), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(5132), "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000", new DateTime(2021, 10, 19, 22, 9, 14, 246, DateTimeKind.Local).AddTicks(8052), "string", 899.0, "IPhone 11", 0 },
+                    { 2, new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6526), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6529), "https://brain-images-ssl.cdn.dixons.com/4/8/10230584/u_10230584.jpg", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6505), "string", 1199.0, "IPhone 11", 0 },
+                    { 3, new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6540), null, 1, 1, "Vilnius", "Pink", 4, "Lithuania", "string", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6544), "https://brain-images-ssl.cdn.dixons.com/6/0/10230606/u_10230606.jpg", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6537), "string", 1099.0, "IPhone 10 Pro", 0 },
+                    { 4, new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6551), null, 1, 1, "Vilnius", "Pink", 3, "Lithuania", "string", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6554), "https://brain-images-ssl.cdn.dixons.com/0/0/10230600/u_10230600.jpg", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6547), "string", 999.0, "IPhone 11", 0 },
+                    { 5, new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6562), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6564), "https://brain-images-ssl.cdn.dixons.com/7/9/10230597/u_10230597.jpg", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6558), "string", 1159.0, "IPhone 11 Pro", 0 },
+                    { 6, new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6572), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6575), "https://media.ao.com/en-GB/Productimages/Images/rvMedium/purple_apple_mobile_01_m_p.jpg", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6568), "string", 930.0, "IPhone 12", 0 },
+                    { 7, new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6583), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6587), "https://cdn.shopify.com/s/files/1/2700/1230/products/iPhone12_Purple_PDP_Image_2__WWEN_1024x1024.jpg?v=1619138796", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6580), "string", 800.0, "IPhone 10 Pro", 0 },
+                    { 8, new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6594), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6597), "https://m.xcite.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/u/buy_apple_iphone_11_phone_-_purple_lowest_price_in_kuwait_4_1.jpg", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6591), "string", 999.0, "IPhone 11", 0 },
+                    { 9, new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6604), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6608), "https://m.media-amazon.com/images/I/81mxun+6pEL._AC_SL1500_.jpg", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6601), "string", 1130.0, "IPhone 10 Pro", 0 },
+                    { 10, new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6663), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6666), "https://www.ideal.lt/media/catalog/product/cache/1/image/1920x/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone12_green_3.png", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6657), "string", 1299.0, "IPhone 12", 0 },
+                    { 11, new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6674), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6677), "https://kainos-img.dgn.lt/photos2_25_57208819/img.jpg", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6670), "string", 900.0, "IPhone 11", 0 },
+                    { 12, new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6684), null, 1, 1, "Vilnius", "Pink", 2, "Lithuania", "string", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6687), "https://istore.lt/media/catalog/product/cache/1/small_image/504x/602f0fa2c1f0d1ba5e241f914e856ff9/a/p/apple-iphone-11-red-2.jpg", new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6681), "string", 915.0, "IPhone 11", 0 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -445,6 +458,16 @@ namespace GiantSoft.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_ApiUserId",
+                table: "Comments",
+                column: "ApiUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_ProductId",
+                table: "Comments",
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Feedbacks_ApiUserId",

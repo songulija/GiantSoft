@@ -5,6 +5,7 @@ using GiantSoft.ModelsDTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ namespace GiantSoft.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetProduct(int id)
         {
-            var product = await _unitOfWork.Products.Get(p => p.Id == id);
+            var product = await _unitOfWork.Products.Get(p => p.Id == id, include: p => p.Include(x => x.Whishlists));
             var result = _mapper.Map<ProductDTO>(product);
             return Ok(result);
         }

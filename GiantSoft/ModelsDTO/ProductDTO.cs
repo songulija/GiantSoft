@@ -58,5 +58,6 @@ namespace GiantSoft.ModelsDTO
         public virtual IList<WhishlistDTO> Whishlists { get; set; }
         public virtual IList<JournalDTO> Journals { get; set; }
         public virtual IList<PaymentDTO> Payments { get; set; }
+        public virtual IList<CommentDTO> Comments { get; set; }
     }
 }

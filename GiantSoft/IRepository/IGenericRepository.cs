@@ -24,10 +24,10 @@ namespace GiantSoft.IRepository
         /// <param name="include"></param>
         /// <returns></returns>
         Task<IList<T>> GetAll(Expression<Func<T, bool>> expression = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-            Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null
-        );
-       
+           Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+           Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null
+       );
+
         /// <summary>
         /// this one is just getting One record. its taking same expression parameter
         /// and it will have includes. returns object(t)

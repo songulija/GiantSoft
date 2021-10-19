@@ -19,6 +19,7 @@ namespace GiantSoft.Data
         public virtual IList<Feedback> Feedbacks { get; set; }
         public virtual IList<Whishlist> Whishlists { get; set; }
         public virtual IList<Journal> Journals { get; set; }
+        public virtual IList<Comment> Comments { get; set; }
 
     }
 }
