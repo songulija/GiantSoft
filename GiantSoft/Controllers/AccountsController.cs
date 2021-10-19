@@ -2,13 +2,16 @@
 using GiantSoft.Data;
 using GiantSoft.ModelsDTO;
 using GiantSoft.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace GiantSoft.Controllers
@@ -32,7 +35,17 @@ namespace GiantSoft.Controllers
             _logger = logger;
             _authManager = authManager;
         }
-
+        [Authorize]
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetUser()
+        {
+            Console.WriteLine("ITS HERERERER");
+            string userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            return Ok(userId);
+        }
 
 
         /// <summary>
@@ -109,7 +122,7 @@ namespace GiantSoft.Controllers
             //return anything in 200 range. means it was succesful
             //return new object with an expression called Token. it'll equal to 
             //authManager method CreateToken which will return Token
-            return Accepted(new { Token = await _authManager.CreateToken() });
+            return Accepted(new { Token = await _authManager.CreateToken(), Email = userDTO.Email });
 
         }
 
