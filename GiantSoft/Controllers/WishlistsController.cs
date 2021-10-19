@@ -30,7 +30,6 @@ namespace GiantSoft.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Administrator")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetWhishlists()
@@ -41,7 +40,6 @@ namespace GiantSoft.Controllers
         }
 
         [HttpGet("{id:int}", Name = "GetWhishlist")]
-        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetWhishlist(int id)
@@ -52,7 +50,6 @@ namespace GiantSoft.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -70,7 +67,6 @@ namespace GiantSoft.Controllers
         }
 
         [HttpPut("{id:int}")]
-        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -96,7 +92,6 @@ namespace GiantSoft.Controllers
             return NoContent();
         }
         [HttpDelete("{id:int}")]
-        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
