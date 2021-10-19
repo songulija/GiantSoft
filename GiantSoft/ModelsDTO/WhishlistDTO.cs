@@ -13,10 +13,9 @@ namespace GiantSoft.ModelsDTO
     public class CreateWhishlistDTO
     {
         [Required]
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         [Required]
         public int ProductId { get; set; }
-        [Required]
         public DateTime Date { get; set; }
     }
     /// <summary>

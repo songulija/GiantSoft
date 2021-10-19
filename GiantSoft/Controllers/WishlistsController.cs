@@ -60,6 +60,7 @@ namespace GiantSoft.Controllers
                 _logger.LogError($"Invalid CREATE attemt in {nameof(CreateWhishlist)}");
                 return BadRequest();
             }
+            whishlistDTO.Date = DateTime.Now;
             var whishlist = _mapper.Map<Whishlist>(whishlistDTO);
             await _unitOfWork.Whishlists.Insert(whishlist);
             await _unitOfWork.Save();
