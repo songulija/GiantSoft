@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GiantSoft.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20211019190915_InitialDatabase")]
+    [Migration("20211020083729_InitialDatabase")]
     partial class InitialDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -417,7 +417,7 @@ namespace GiantSoft.Migrations
                         new
                         {
                             Id = 1,
-                            AddDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(4792),
+                            AddDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(572),
                             BrandId = 1,
                             CategoryId = 1,
                             City = "Vilnius",
@@ -425,9 +425,9 @@ namespace GiantSoft.Migrations
                             CountInStock = 2,
                             Country = "Lithuania",
                             Description = "string",
-                            ExpireDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(5132),
+                            ExpireDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(898),
                             ImageString = "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=80&.v=1629842667000",
-                            ModelYear = new DateTime(2021, 10, 19, 22, 9, 14, 246, DateTimeKind.Local).AddTicks(8052),
+                            ModelYear = new DateTime(2021, 10, 20, 11, 37, 29, 440, DateTimeKind.Local).AddTicks(3129),
                             OtherBrand = "string",
                             Price = 899.0,
                             ProductName = "IPhone 11",
@@ -436,7 +436,7 @@ namespace GiantSoft.Migrations
                         new
                         {
                             Id = 2,
-                            AddDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6526),
+                            AddDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1668),
                             BrandId = 1,
                             CategoryId = 1,
                             City = "Vilnius",
@@ -444,9 +444,9 @@ namespace GiantSoft.Migrations
                             CountInStock = 2,
                             Country = "Lithuania",
                             Description = "string",
-                            ExpireDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6529),
+                            ExpireDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1671),
                             ImageString = "https://brain-images-ssl.cdn.dixons.com/4/8/10230584/u_10230584.jpg",
-                            ModelYear = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6505),
+                            ModelYear = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1655),
                             OtherBrand = "string",
                             Price = 1199.0,
                             ProductName = "IPhone 11",
@@ -455,7 +455,7 @@ namespace GiantSoft.Migrations
                         new
                         {
                             Id = 3,
-                            AddDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6540),
+                            AddDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1679),
                             BrandId = 1,
                             CategoryId = 1,
                             City = "Vilnius",
@@ -463,9 +463,9 @@ namespace GiantSoft.Migrations
                             CountInStock = 4,
                             Country = "Lithuania",
                             Description = "string",
-                            ExpireDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6544),
+                            ExpireDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1682),
                             ImageString = "https://brain-images-ssl.cdn.dixons.com/6/0/10230606/u_10230606.jpg",
-                            ModelYear = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6537),
+                            ModelYear = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1676),
                             OtherBrand = "string",
                             Price = 1099.0,
                             ProductName = "IPhone 10 Pro",
@@ -474,7 +474,7 @@ namespace GiantSoft.Migrations
                         new
                         {
                             Id = 4,
-                            AddDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6551),
+                            AddDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1688),
                             BrandId = 1,
                             CategoryId = 1,
                             City = "Vilnius",
@@ -482,9 +482,9 @@ namespace GiantSoft.Migrations
                             CountInStock = 3,
                             Country = "Lithuania",
                             Description = "string",
-                            ExpireDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6554),
+                            ExpireDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1691),
                             ImageString = "https://brain-images-ssl.cdn.dixons.com/0/0/10230600/u_10230600.jpg",
-                            ModelYear = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6547),
+                            ModelYear = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1685),
                             OtherBrand = "string",
                             Price = 999.0,
                             ProductName = "IPhone 11",
@@ -493,7 +493,7 @@ namespace GiantSoft.Migrations
                         new
                         {
                             Id = 5,
-                            AddDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6562),
+                            AddDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1697),
                             BrandId = 1,
                             CategoryId = 1,
                             City = "Vilnius",
@@ -501,9 +501,9 @@ namespace GiantSoft.Migrations
                             CountInStock = 2,
                             Country = "Lithuania",
                             Description = "string",
-                            ExpireDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6564),
+                            ExpireDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1700),
                             ImageString = "https://brain-images-ssl.cdn.dixons.com/7/9/10230597/u_10230597.jpg",
-                            ModelYear = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6558),
+                            ModelYear = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1695),
                             OtherBrand = "string",
                             Price = 1159.0,
                             ProductName = "IPhone 11 Pro",
@@ -512,7 +512,7 @@ namespace GiantSoft.Migrations
                         new
                         {
                             Id = 6,
-                            AddDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6572),
+                            AddDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1775),
                             BrandId = 1,
                             CategoryId = 1,
                             City = "Vilnius",
@@ -520,9 +520,9 @@ namespace GiantSoft.Migrations
                             CountInStock = 2,
                             Country = "Lithuania",
                             Description = "string",
-                            ExpireDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6575),
+                            ExpireDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1777),
                             ImageString = "https://media.ao.com/en-GB/Productimages/Images/rvMedium/purple_apple_mobile_01_m_p.jpg",
-                            ModelYear = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6568),
+                            ModelYear = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1771),
                             OtherBrand = "string",
                             Price = 930.0,
                             ProductName = "IPhone 12",
@@ -531,7 +531,7 @@ namespace GiantSoft.Migrations
                         new
                         {
                             Id = 7,
-                            AddDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6583),
+                            AddDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1784),
                             BrandId = 1,
                             CategoryId = 1,
                             City = "Vilnius",
@@ -539,9 +539,9 @@ namespace GiantSoft.Migrations
                             CountInStock = 2,
                             Country = "Lithuania",
                             Description = "string",
-                            ExpireDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6587),
+                            ExpireDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1786),
                             ImageString = "https://cdn.shopify.com/s/files/1/2700/1230/products/iPhone12_Purple_PDP_Image_2__WWEN_1024x1024.jpg?v=1619138796",
-                            ModelYear = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6580),
+                            ModelYear = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1781),
                             OtherBrand = "string",
                             Price = 800.0,
                             ProductName = "IPhone 10 Pro",
@@ -550,7 +550,7 @@ namespace GiantSoft.Migrations
                         new
                         {
                             Id = 8,
-                            AddDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6594),
+                            AddDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1792),
                             BrandId = 1,
                             CategoryId = 1,
                             City = "Vilnius",
@@ -558,9 +558,9 @@ namespace GiantSoft.Migrations
                             CountInStock = 2,
                             Country = "Lithuania",
                             Description = "string",
-                            ExpireDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6597),
+                            ExpireDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1794),
                             ImageString = "https://m.xcite.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/u/buy_apple_iphone_11_phone_-_purple_lowest_price_in_kuwait_4_1.jpg",
-                            ModelYear = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6591),
+                            ModelYear = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1789),
                             OtherBrand = "string",
                             Price = 999.0,
                             ProductName = "IPhone 11",
@@ -569,7 +569,7 @@ namespace GiantSoft.Migrations
                         new
                         {
                             Id = 9,
-                            AddDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6604),
+                            AddDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1800),
                             BrandId = 1,
                             CategoryId = 1,
                             City = "Vilnius",
@@ -577,9 +577,9 @@ namespace GiantSoft.Migrations
                             CountInStock = 2,
                             Country = "Lithuania",
                             Description = "string",
-                            ExpireDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6608),
+                            ExpireDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1802),
                             ImageString = "https://m.media-amazon.com/images/I/81mxun+6pEL._AC_SL1500_.jpg",
-                            ModelYear = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6601),
+                            ModelYear = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1797),
                             OtherBrand = "string",
                             Price = 1130.0,
                             ProductName = "IPhone 10 Pro",
@@ -588,7 +588,7 @@ namespace GiantSoft.Migrations
                         new
                         {
                             Id = 10,
-                            AddDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6663),
+                            AddDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1808),
                             BrandId = 1,
                             CategoryId = 1,
                             City = "Vilnius",
@@ -596,9 +596,9 @@ namespace GiantSoft.Migrations
                             CountInStock = 2,
                             Country = "Lithuania",
                             Description = "string",
-                            ExpireDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6666),
+                            ExpireDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1810),
                             ImageString = "https://www.ideal.lt/media/catalog/product/cache/1/image/1920x/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone12_green_3.png",
-                            ModelYear = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6657),
+                            ModelYear = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1805),
                             OtherBrand = "string",
                             Price = 1299.0,
                             ProductName = "IPhone 12",
@@ -607,7 +607,7 @@ namespace GiantSoft.Migrations
                         new
                         {
                             Id = 11,
-                            AddDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6674),
+                            AddDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1816),
                             BrandId = 1,
                             CategoryId = 1,
                             City = "Vilnius",
@@ -615,9 +615,9 @@ namespace GiantSoft.Migrations
                             CountInStock = 2,
                             Country = "Lithuania",
                             Description = "string",
-                            ExpireDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6677),
+                            ExpireDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1818),
                             ImageString = "https://kainos-img.dgn.lt/photos2_25_57208819/img.jpg",
-                            ModelYear = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6670),
+                            ModelYear = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1813),
                             OtherBrand = "string",
                             Price = 900.0,
                             ProductName = "IPhone 11",
@@ -626,7 +626,7 @@ namespace GiantSoft.Migrations
                         new
                         {
                             Id = 12,
-                            AddDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6684),
+                            AddDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1824),
                             BrandId = 1,
                             CategoryId = 1,
                             City = "Vilnius",
@@ -634,9 +634,9 @@ namespace GiantSoft.Migrations
                             CountInStock = 2,
                             Country = "Lithuania",
                             Description = "string",
-                            ExpireDate = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6687),
+                            ExpireDate = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1826),
                             ImageString = "https://istore.lt/media/catalog/product/cache/1/small_image/504x/602f0fa2c1f0d1ba5e241f914e856ff9/a/p/apple-iphone-11-red-2.jpg",
-                            ModelYear = new DateTime(2021, 10, 19, 22, 9, 14, 249, DateTimeKind.Local).AddTicks(6681),
+                            ModelYear = new DateTime(2021, 10, 20, 11, 37, 29, 443, DateTimeKind.Local).AddTicks(1821),
                             OtherBrand = "string",
                             Price = 915.0,
                             ProductName = "IPhone 11",
@@ -658,6 +658,9 @@ namespace GiantSoft.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<Guid>("UserId")
@@ -701,15 +704,15 @@ namespace GiantSoft.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "eda8911e-3aa5-447a-aab5-e2d19de49d65",
-                            ConcurrencyStamp = "0fcd76a6-85bc-42e5-b7f7-b8336d86dc4d",
+                            Id = "a2adfb48-81bb-4db1-a378-b45cce904391",
+                            ConcurrencyStamp = "3b2759ab-c6a9-4654-9d79-347b37a4ecef",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "23fb6287-9303-4c78-bf43-b5e141a2bbe8",
-                            ConcurrencyStamp = "a3358c25-14c4-4996-8145-370687f2aa0b",
+                            Id = "c8e33f6f-d30b-416f-9062-213d2e992d9b",
+                            ConcurrencyStamp = "03e45956-c964-4d9d-be85-2ef26835b95f",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
